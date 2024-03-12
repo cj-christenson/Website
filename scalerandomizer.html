@@ -1,10 +1,55 @@
 <!DOCTYPE html>
 <html>
+    <script>
+        const major_scales = ["C Major", "Db Major", "D Major", "Eb Major", "E Major", "F Major", "F# Major", "G Major", "Ab Major", "A Major", "Bb Major", "B Major"]
+        const nat_minor_scales = ["C Natural Minor", "C# Natural Minor", "D Natural Minor", "Eb Natural Minor", "E Natural Minor", "F Natural Minor", "F# Natural Minor", "G Natural Minor", "G# Natural Minor", "A Natural Minor", "Bb Natural Minor", "B Natural Minor"]
+        const har_minor_scales = ["C Harmonic Minor", "C# Harmonic Minor", "D Harmonic Minor", "Eb Harmonic Minor", "E Harmonic Minor", "F Harmonic Minor", "F# Harmonic Minor", "G Harmonic Minor", "G# Harmonic Minor", "A Harmonic Minor", "Bb Harmonic Minor", "B Harmonic Minor"]
+        const mel_minor_scales = ["C Melodic Minor", "C# Melodic Minor", "D Melodic Minor", "Eb Melodic Minor", "E Melodic Minor", "F Melodic Minor", "F# Melodic Minor", "G Melodic Minor", "G# Melodic Minor", "A Melodic Minor", "Bb Melodic Minor", "B Melodic Minor"]
+        const arpeggios = ["C Arpeggios", "C#/Db Arpeggios", "D Arpeggios", "Eb Arpeggios", "E Arpeggios", "F Arpeggios", "F#/Gb Arpeggios", "G Arpeggios", "G#/Ab Arpeggios", "A Arpeggios", "Bb Arpeggios", "B Arpeggios"]
+        var chosen_scales = major_scales.concat(nat_minor_scales, har_minor_scales, mel_minor_scales, arpeggios)
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) { 
+            
+                // Generate random number 
+                var j = Math.floor(Math.random() * (i + 1));
+                            
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                //console.log(temp)
+            }
+            //console.log(array);
+            return array;
+        }
+        
+        function generate_scales() {
+            //console.log(typeof chosen_scales);
+            const scales = shuffleArray(chosen_scales);
+            var ul = document.getElementById("scale_list");
+            ul.innerHTML = "";
+            for (let i = 0; i < scales.length; i++) {
+                scale = scales[i];
+                var li = document.createElement("li")
+                li.innerText = scale
+                ul.append(li)
+            }
+            
+        }
+        
+    </script>
 <body>
 
-<h1>Cooper Christenson</h1>
-<h2>Scale Randomizer</h2>
-<a href="./main.html">Go Home</a>
 
+
+
+    <h1>Cooper Christenson</h1>
+    <h2>Scale Randomizer</h2>
+    <a href="./main.html">Go Home</a>
+    <div>
+        <button type="button" onclick="generate_scales();">Generate Scales</button>
+        <ul id="scale_list">
+
+        </ul>
+    </div>
 </body>
 </html>
